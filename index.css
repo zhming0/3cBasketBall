@@ -1,0 +1,293 @@
+body{
+	behavior:url("csshover.htc");
+	background:url(./images/bodybg.png) repeat-x;
+	margin:0;
+	padding:0;
+	font-family:Arial;
+}
+
+a{
+	color:#555;
+	text-decoration:none;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+div{
+	zoom:1;
+	overflow:hidden;
+}
+
+#mainFrame{
+	text-align:left;
+	width:920px;
+	zoom:1;
+	overflow:hidden;
+}
+
+#body{
+	min-height:600px;
+	height:expression((documentElement.clientHeight < 600) ? "600px" : "auto" ); 	
+}
+
+#body,#banner,#footer{
+	margin:0 10px;
+	width:900px;
+}
+
+#navi{
+	margin-top:4px;
+	padding:0;
+	float:right;
+	font-size:12px;
+	text-align:right;
+	width:555px;
+}
+
+#naviTop{
+	color:#787878;
+	height:20px;
+}
+
+#naviTop a{
+	color:#787878;
+}
+
+#naviTop a:hover{
+	color:#333;
+}
+
+#naviBar{
+	margin-top:6px;
+	line-height:56px;
+	font-weight:bold;
+	font-size:13px;
+}
+
+#naviBar a{
+	float:left;
+	color:#FFF;
+	padding:4px 6px;
+}
+
+#naviBar a:hover{
+	text-decoration:none;
+	color:#EEE;
+}
+
+.navisplit{
+	background:url(./images/navisplit.jpg) no-repeat;
+	height:60px;
+	width:2px;
+	float:left;
+}
+
+#logo{
+	float:left;
+}
+
+#weather{
+	margin:3px;
+	font-size:13px;
+	color:#D00;
+	text-align:right;
+	height:20px;
+}
+
+#banner{
+	width:900px;
+	height:260px;
+	background-image:url(./images/banner.jpg);
+	background-repeat:no-repeat;
+	position:relative;
+}
+
+#banner #bannerSwf{
+	position:absolute;
+	top:0;left:0;
+}
+
+#banner #bannerSwfMan{
+	position:absolute;
+	top:0;left:325px;
+}
+
+#banner #member{
+	float:right;
+	width:235px;
+	height:260px;
+	background:#FFF;
+	background-image:url(./images/member.jpg);
+	font-family:微软雅黑;
+	font-size:15px;
+}
+
+#banner #member #memberInfo{
+	padding-top:70px;
+	padding-left:5px;
+}
+
+#location{
+	background-image:url(./images/barbg.png);
+	font-size:13px;
+	height:25px;
+	line-height:25px;
+	padding:0 5px;
+	color:#FFF;
+	font-weight:bold;
+}
+
+#location a{
+	color:#FFF;
+	text-decoration:none;
+}
+
+#location a:hover{
+	text-decoration:underline;
+}
+
+#footer{
+	background-image:url(./images/footbg.jpg);
+	background-repeat:no-repeat;
+	width:900px;
+	text-align:center;
+	line-height:35px;
+	font-size:14px;
+	color:#444;
+}
+
+#footer a{
+	color:#444;
+	text-decoration:none;
+}
+
+#footer a:hover{
+	text-decoration:underline;
+}
+
+#body{
+	background-image:url(./images/wood3.jpg);
+	position:relative;
+}
+
+#leftBar{
+	float:left;
+	width:150px;
+	color:#FFF;
+	font-size:13px;
+	font-weight:bold;
+}
+
+#leftBar #barPadding{
+	width:10px;
+	height:395px;
+	float:left;
+}
+
+#leftBar #barContent{
+	width:140px;
+	float:left;
+}
+
+#leftBar .bg{
+	background-image:url(./images/leftbg.png);
+}
+
+#leftBar table,.itemLabel{
+	width:140px;
+	height:40px;
+}
+
+#leftBar table td{
+	padding:0;
+	cursor:pointer;
+	text-align:left;
+	margin:0;
+}
+
+#leftBar table tr:hover td{
+	text-decoration:underline;
+}
+
+#leftBar .item{
+	text-align:center;
+	zoom:1;
+	overflow:hidden;
+}
+
+#leftBar .item  .itemLabel{
+	line-height:25px;
+	height:25px;
+	cursor:pointer;
+}
+
+#leftBar .item  .itemLabel:hover{
+	text-decoration:underline;
+}
+
+#leftBarTop{
+	height:20px;
+	background-image:url(./images/reflect.png);
+}
+
+#whiteman{
+	float:right;
+}
+
+#rightBar{
+	border:1px solid #CCC;
+	padding:1px;
+	background:#FFF;
+	float:right;
+	width:175px;
+	margin-top:2px;
+	margin-right:1px;
+}
+
+#rightBar .title{
+	background-image:url(./images/bartitle.png);
+	border:	1px solid rgb(180,97,79);
+	height:33px;
+	line-height:33px;
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	color:#FFF;
+}
+
+#rightBar .item1,.item2{
+	padding:3px;
+}
+
+#rightBar .item1{
+	background:#FFF;
+	border-bottom:1px solid #F7F7F7;
+}
+
+#rightBar .item2{
+	background:#F0F0F0;
+	border-bottom:1px solid #DDD;
+}
+
+#body .basketball{
+	display:block;
+	position:absolute;
+	bottom:0;
+}
+
+#main{
+	float:left;
+	margin:3px;
+	width:560px;
+}
+
+#loading{
+	position:absolute;
+	left:350px;
+	top:100px;
+	padding:10px;
+	border:1px solid #DDD;
+	background:#FFF;
+}
