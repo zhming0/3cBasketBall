@@ -7,6 +7,7 @@ if(isset($_POST['content'])&&isset($_POST['year']))
 }
 
 $year=isset($_GET['year'])?ceil($_GET['year']):0;
+date_default_timezone_set('Asia/Chongqing');
 $thisyear=date('Y',time());
 if($year==0){
 	$year=$thisyear;

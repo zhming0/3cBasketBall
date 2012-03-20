@@ -1,6 +1,7 @@
 <?php
 require('global.inc.php');
 $year=isset($_GET['year'])?$_GET['year']:0;
+date_default_timezone_set('Asia/Chongqing');
 $t=time();
 if($year==0)
 	$year=date('Y',$t);
