@@ -31,14 +31,16 @@ $(document).ready(function(){
 
 function showLoading(){
 	$('#loading').stop(true,true);
-	$('#loading').fadeIn(300);
-	$('#main').hide();
+	$('#main').stop(true,true);
+	$('#loading').fadeIn(500);
+	$('#main').fadeOut(500);
 }
 
 function hideLoading(){
 	$('#loading').stop(true,true);
-	$('#loading').fadeOut(300);
-	$('#main').show();
+	$('#main').stop(true,true);
+	$('#loading').fadeOut(500);
+	$('#main').fadeIn(500);
 }
 
 function select(id){
