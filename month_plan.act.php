@@ -3,9 +3,15 @@ require('global.inc.php');
 $year=isset($_GET['year'])?$_GET['year']:0;
 date_default_timezone_set('Asia/Chongqing');
 $t=time();
+$thisyear=date('Y',$t);
+$thismonth=date('m',$t)*1;
 if($year==0)
-	$year=date('Y',$t);
-$mplan=$D->get('monthplan2012');
+	$year=$thisyear;
+if(!$D->exist('monthplan'.$thisyear))
+{
+	$D->set('monthplan'.$thisyear,array('','','','','','','','','','','',''));
+}
+$mplan=$D->get('monthplan'.$year);
 ?>
 <style type="text/css">
 .noteBlock{
@@ -16,12 +22,23 @@ $mplan=$D->get('monthplan2012');
 	float:left;
 	margin:6px;
 	cursor:pointer;
+	display:block;
+	text-decoration:none;
+	color:#222;
+}
+
+.noteBlock:hover{
+	text-decoration:none;
 }
 
 .noteBlock .content{
 	font-size:13px;
 	height:100px;
 	padding:1px;
+}
+.noteBlock .locked{
+	color:#777;
+	cursor:default;
 }
 .noteBlock .content .text{
 	padding:3px;
@@ -35,7 +52,7 @@ $mplan=$D->get('monthplan2012');
 	line-height:50px;
 	font-weight:bold;
 	padding:5px;
-	background-image:url(./images/whitebg.png);	
+	color:#FFF;
 	position:relative;
 }
 #monthTitle .basketball{
@@ -51,15 +68,90 @@ $mplan=$D->get('monthplan2012');
 	width:20px;
 	height:20px;
 }
+#detail{
+	width:530px;
+	height:400px;
+	position:absolute;
+	padding:3px;
+	left:560px;
+	top:0;
+	background:#FFF;
+	border:1px solid #555;
+	overflow-y:scroll;
+}
+#frameOuter{
+	position:relative;
+	overflow:hidden;
+	width:560px;
+	height:408px;
+}
+#frameInner{
+	position:absolute;
+	left:0;
+	top:0;
+	height:408px;
+	width:1200px;
+}
+#months{
+	width:560px;
+	height:408px;
+}
 </style>
 <script type="text/javascript">
 $(function(){
-	$('.noteBlock').hover(function(){
+	var $c=$('.noteBlock');
+	$c.hover(function(){
 		$(this).css({backgroundPosition:'0 0'});
 	},function(){
 		$(this).css({backgroundPosition:'0 125px'});
 	});
+	$('#detail div').hide();
+	$('#detail').css({opacity:0.9});
 });
+var curmonth=0;
+var redoTxt='';
+function detail(month)
+{
+	curmonth=month;
+	var $c=$('#m'+month);
+	$('#frameInner').animate({left:-550},300);
+	$('#detail div').hide();
+	$('#detail'+month).show();
+}
+function back()
+{
+	viewMode();
+	$('#frameInner').animate({left:0},300);	
+}
+function edit()
+{
+	if(!curmonth)
+		return;
+	editMode();
+}
+function save()
+{
+}
+function editMode()
+{
+	var $c=$('#detail'+curmonth);	
+	redoTxt=$c.html();
+	$c.attr('contentEditable','true');
+	$c.css({color:'#555'});
+	$c.focus();
+	$c=$('editBtn');
+	$c.html('保存');
+	$c[0].onclick=save;
+}
+function viewMode()
+{
+	var $c=$('#editBtn');
+	$c.html('编辑');
+	$c[0].onclick=edit;
+	$c=$('#detail'+curmonth);	
+	$c.attr('contentEditable','false');
+	$c.css({color:'#000'});
+}
 </script>
 <div id="monthTitle">
 	<div style="float:left">
@@ -75,16 +167,46 @@ $(function(){
 		</div>
 	</div>
 </div>
-<?php
-for($i=1;$i<=12;$i++)
+<div id="frameOuter"><div id="frameInner">
+	<div id="months">
+	<?php
+if($mplan===false)
 {
-echo<<<HTML
-	<div class="noteBlock">
-		<div class="content">
-			<center>{$i}月</center>
-			<div class="text">{$mplan[$i-1]}</div>
-		</div>
-	</div>
+	echo '<div style="color:#900;padding:5px;background-image:url(./images/whitebg.png);font-size:20px;">【没有本年度的月计划信息】</div>';
+}else
+	for($i=1;$i<=12;$i++)
+	{
+		$ccc='';
+		$act=' onclick="detail('.$i.')"';
+		if($thisyear<$year||($thisyear==$year&&$i>$thismonth))
+		{
+			$ccc=' locked';
+			$act='';
+		}
+		echo<<<HTML
+		<a class="noteBlock" id="m{$i}" href="javascript:void(0)"{$act}>
+			<div class="content{$ccc}">
+				<center>{$i}月</center>
+				<div class="text">{$mplan[$i-1]}</div>
+			</div>
+		</a>
 HTML;
-}
-?>
+	}
+	?>
+	</div>
+	<div id="detail">
+		<p style="text-align:right;padding:0;margin:0">
+			<a href="javascript:void(0)" onclick="back()">[ ←返回 ]</a>
+			<a href="javascript:void(0)" onclick="edit()" id="editBtn">[ 编辑 ]</a>
+		</p>
+		<?php
+		if($mplan)
+		{
+		for($i=1;$i<=12;$i++)
+		echo<<<html
+		<div id="detail{$i}">{$mplan[$i-1]}</div>
+html;
+		}
+		?>
+	</div>
+</div></div>

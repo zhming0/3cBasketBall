@@ -74,9 +74,14 @@ $plan=$D->get('yearplan'.$year);
 }
 </style>
 <script type="text/javascript">
-function edit()
+var redoTxt;
+function editMode()
 {
 	var $c=$('#calendar .body .content');
+	redoTxt=$c.html();
+	$c.attr('contentEditable','true');
+	$c.css({background:'#FFF'});
+	$c.focus();
 	var item=$('#editBtn')[0];
 	$(item).html('保存');
 	item.onclick=function(){
@@ -87,19 +92,51 @@ function edit()
 		$.post('year_plan.act.php',{'year':<?php echo $year;?>,'content':$c.html()},function(data){
 			if(data=='ok')
 			{
-				item.onclick=edit;
-				$(item).html('编辑');
+				viewMode();
 			}
 		});
 	};
-	$c.attr('contentEditable','true');
-	$c.css({background:'#FFF'});
-	$c.focus();
+	item=$('#emptyBtn')[0];
+	item.onclick=cancel;
+	$(item).html('取消');
+}
+function viewMode()
+{
+	var item=$('#editBtn')[0];
+	item.onclick=edit;
+	$(item).html('编辑');
+	item=$('#emptyBtn')[0];
+	$(item).html('清空');
+	item.onclick=empty;
+}
+function edit()
+{
+	editMode();
 }
 function empty()
 {
-	$('#calendar .body .content').html('');
-	edit();
+	editMode();
+	var $c=$('#calendar .body .content');
+	$c.html('');
+	$c.focus();
+}
+function reset()
+{
+	var $c;
+	$c=$('#emptyBtn');
+	$c.html('清空');
+	$c[0].onclick=empty;
+	$c=$('#editBtn');
+	$c[0].onclick=edit;
+	$c.html('编辑');
+	$c=$('#calendar .body .content');
+	$c.attr('contentEditable','false');
+	$c.css({background:'none'});
+}
+function cancel()
+{
+	reset();
+	$('#calendar .body .content').html(redoTxt);	
 }
 </script>
 <div id="calendar">
@@ -122,7 +159,7 @@ HTML;
 	<div class="foot">
 		<div class="tools">
 			[ <a href="javascript:void(0)" onclick="edit();" id="editBtn">编辑</a> ]
-			[ <a href="javascript:void(0)" onclick="empty();">清空</a> ]
+			[ <a href="javascript:void(0)" onclick="empty();" id="emptyBtn">清空</a> ]
 		</div>
 	</div>
 </div>
