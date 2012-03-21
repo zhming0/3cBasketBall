@@ -106,10 +106,13 @@ $(function(){
 		$(this).css({backgroundPosition:'0 125px'});
 	});
 	$('#detail div').hide();
-	$('#detail').css({opacity:0.8});
+	$('#detail').css({opacity:0.9});
 });
+var curmonth=0;
+var redoTxt='';
 function detail(month)
 {
+	curmonth=month;
 	var $c=$('#m'+month);
 	$('#frameInner').animate({left:-550},300);
 	$('#detail div').hide();
@@ -117,7 +120,37 @@ function detail(month)
 }
 function back()
 {
+	viewMode();
 	$('#frameInner').animate({left:0},300);	
+}
+function edit()
+{
+	if(!curmonth)
+		return;
+	editMode();
+}
+function save()
+{
+}
+function editMode()
+{
+	var $c=$('#detail'+curmonth);	
+	redoTxt=$c.html();
+	$c.attr('contentEditable','true');
+	$c.css({color:'#555'});
+	$c.focus();
+	$c=$('editBtn');
+	$c.html('保存');
+	$c[0].onclick=save;
+}
+function viewMode()
+{
+	var $c=$('#editBtn');
+	$c.html('编辑');
+	$c[0].onclick=edit;
+	$c=$('#detail'+curmonth);	
+	$c.attr('contentEditable','false');
+	$c.css({color:'#000'});
 }
 </script>
 <div id="monthTitle">
@@ -164,7 +197,7 @@ HTML;
 	<div id="detail">
 		<p style="text-align:right;padding:0;margin:0">
 			<a href="javascript:void(0)" onclick="back()">[ ←返回 ]</a>
-			<a href="javascript:void(0)" onclick="edit()">[ 编辑 ]</a>
+			<a href="javascript:void(0)" onclick="edit()" id="editBtn">[ 编辑 ]</a>
 		</p>
 		<?php
 		if($mplan)

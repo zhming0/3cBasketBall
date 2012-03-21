@@ -1,5 +1,5 @@
 <?php
-//sleep(1);
+sleep(1);
 require_once('hash.inc.php');
 require_once('user.inc.php');
 require_once('calendar.inc.php');
