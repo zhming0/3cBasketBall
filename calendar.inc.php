@@ -7,6 +7,7 @@ class Calendar{
 			$year=date('Y',$t);
 		if($month==0)
 			$month=date('m',$t);
+		date_default_timezone_set('Asia/Chongqing');
 		$t=mktime(0,0,0,$month,1,$year);
 		$this->w=date('w',$t);
 		$p=$t-$this->w*24*3600;
