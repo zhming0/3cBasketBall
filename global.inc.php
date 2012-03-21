@@ -1,5 +1,6 @@
 <?php
 //sleep(1);
+date_default_timezone_set('Asia/Chongqing');
 require_once('hash.inc.php');
 require_once('user.inc.php');
 require_once('calendar.inc.php');

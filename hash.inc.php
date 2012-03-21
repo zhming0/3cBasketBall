@@ -1,5 +1,6 @@
 <?php
 class Hash{
+	//This function is damn good!
 	private function hs($ar,$n,$m)
 	{
 		$c=count($ar);
@@ -30,7 +31,7 @@ class Hash{
 		$c=strlen($str);
 		$v='';
 		$m=0;
-		$A=ord('a')-10;
+		$A=ord('a')-10;	// That's weird... 10?
 		$ar=array();
 		for($i=0;$i<$c;$i++)
 		{

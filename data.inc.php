@@ -1,7 +1,7 @@
 <?php
 class Data
 {
-	var $pref;
+	private $pref;
 	public function Data($pref)
 	{
 		$this->pref='data/'.$pref.'/';

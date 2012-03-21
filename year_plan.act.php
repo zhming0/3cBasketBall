@@ -5,7 +5,6 @@ if(isset($_POST['content'])&&isset($_POST['year']))
 	$D->set('yearplan'.$_POST['year'],array('content'=>$_POST['content']));
 	die('ok');
 }
-
 $year=isset($_GET['year'])?ceil($_GET['year']):0;
 date_default_timezone_set('Asia/Chongqing');
 $thisyear=date('Y',time());

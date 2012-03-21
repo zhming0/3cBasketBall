@@ -56,7 +56,7 @@ function actYearPlan(year){
 	proc=$.get('year_plan.act.php',{"t":time++,"year":year},function(data){
 		if(data.length==0)
 			return;
-		proc=0;
+		proc=0;					// That's weird!
 		$('#main').html(data);
 		hideLoading();
 	});
@@ -94,4 +94,7 @@ function actWeekPlan(year,month){
 		$('#main').html(data);
 		hideLoading();
 	});
+}
+function actMoneyManage() {
+	alert("shit");
 }

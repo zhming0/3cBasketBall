@@ -1,17 +1,17 @@
 <?php
 class Calendar{
-	var $w,$y,$m,$d;
+	private $w,$y,$m,$d;
 	public function Calendar($year=0,$month=0){
+		date_default_timezone_set('Asia/Chongqing');
 		$t=time();
 		if($year==0)
 			$year=date('Y',$t);
 		if($month==0)
 			$month=date('m',$t);
-		date_default_timezone_set('Asia/Chongqing');
 		$t=mktime(0,0,0,$month,1,$year);
 		$this->w=date('w',$t);
-		$p=$t-$this->w*24*3600;
-		$this->d=date('d',$p);
+		$p=$t-$this->w*24*3600;		//Why??
+		$this->d=date('d',$p);		//Why p ???
 		$this->m=$month;
 		$this->y=$year;
 	}
