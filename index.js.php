@@ -17,7 +17,9 @@ function flash(ur,w,h){
 var LOADING='<table><tr><td><img src="images/loading.gif"/></td><td>加载中...</td></tr></table>';
 
 $(document).ready(function(){
-	DD_belatedPNG.fix('div,img,p,span,label');
+	try{
+		DD_belatedPNG.fix('div,img,p,span,label');
+	}catch(e){}
 	$('#memberInfo,#loading').html(LOADING);
 	$('#loading,#main').hide();
 	$.get('member_info.act.php',function(data){
@@ -44,7 +46,7 @@ function hideLoading(){
 }
 
 function select(id){
-	$('#leftBar .itemLabel').css({backgroundImage:'url(./images/leftbg.png)'});
+	$('#leftBar .itemLabel,#leftBar .bg').css({backgroundImage:'url(./images/leftbg.png)'});
 	$('#'+id).css({backgroundImage:'none'});
 }
 var proc=0;
@@ -97,6 +99,16 @@ function actWeekPlan(year,month){
 		hideLoading();
 	});
 }
-function actMoneyManage() {
-	alert("shit");
+
+function actMoneyManage(year, month, day, mode) {
+	if (proc)
+		proc.abort();
+	select('moneyManage');
+	proc=$.get('moneymanage.act.php', {"t":time++,"year":year,"month":month,"day":day,"mode":mode}, function(data){
+		if (data.length==0)
+			return;
+		proc = 0;
+		$('#main').html(data);
+		hideLoading();
+	});
 }

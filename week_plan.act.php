@@ -42,7 +42,7 @@ if($mp<1)
 	float:left;
 	width:68px;
 	height:50px;
-	line-Height:50px;
+	line-height:50px;
 	text-align:center;
 	border:1px solid #ADF;
 	margin:4px;
@@ -181,13 +181,13 @@ $(document).ready(function(){
 			else
 				echo '<span>'.$d[0].'</span>';
 		}
-		echo '<label>hahahahahahahahahahahah ahahahahahahahahahahahahahahahahahahahahahahahahahahahaha<br/>asdasd</label>';
+		echo '<label>first<br/>lalala</label>';
 		echo '</div>';
 	}
 	?>
 	<label id="detail">
 		<p>
-		hahaha<br/>ahahahahahahahahahah
+		Detail is <br/>here!!
 		</p>
 	</label>
 </div>

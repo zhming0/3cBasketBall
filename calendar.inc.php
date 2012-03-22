@@ -2,7 +2,6 @@
 class Calendar{
 	private $w,$y,$m,$d;
 	public function Calendar($year=0,$month=0){
-		date_default_timezone_set('Asia/Chongqing');
 		$t=time();
 		if($year==0)
 			$year=date('Y',$t);
@@ -10,8 +9,8 @@ class Calendar{
 			$month=date('m',$t);
 		$t=mktime(0,0,0,$month,1,$year);
 		$this->w=date('w',$t);
-		$p=$t-$this->w*24*3600;		//Why??
-		$this->d=date('d',$p);		//Why p ???
+		$p=$t-$this->w*24*3600;		//Wow...
+		$this->d=date('d',$p);		//Wow..
 		$this->m=$month;
 		$this->y=$year;
 	}
@@ -22,7 +21,7 @@ class Calendar{
 		{
 			$tmp[]=array(($this->d+$i),0);
 		}
-		$d=1;
+		//$d=1;			//Seems useless...
 		$m=$this->m+1;
 		$y=$this->y;
 		if($m>12)
